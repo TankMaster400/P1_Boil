@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.p1_boil.Controller">
+   <children>
+      <TableView editable="true" prefHeight="400.0" prefWidth="707.0">
+        <columns>
+          <TableColumn prefWidth="103.0" text="Nazwa czynności" />
+          <TableColumn prefWidth="150.0" text="Czas trwania czynności" />
+            <TableColumn prefWidth="78.0" text="OD" />
+            <TableColumn prefWidth="91.0" text="DO" />
+        </columns>
+      </TableView>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="462.0" spacing="40.0">
+         <children>
+            <Button fx:id="dodawanie" mnemonicParsing="false" onAction="#dodawanie" prefHeight="40.0" prefWidth="140.0" text="Dodaj Rekord">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Button fx:id="Usun" mnemonicParsing="false" onAction="#Usun" prefHeight="40.0" prefWidth="140.0" text="Usuń rekord">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Button fx:id="UsunW" mnemonicParsing="false" onAction="#UsunW" prefHeight="40.0" prefWidth="140.0" text="Usuń wszystko">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Button fx:id="Generuj" mnemonicParsing="false" onAction="#Generuj" prefHeight="40.0" prefWidth="140.0" text="Generuj graf">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+   </children>
+</HBox>
