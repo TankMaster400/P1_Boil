@@ -6,6 +6,7 @@ public class Records {
     public Integer Czas;
     public String Po;
     public String Przed;
+    public Integer id;
 
     public String getNazwa() {
         return Nazwa;
@@ -39,10 +40,19 @@ public class Records {
         Przed = przed;
     }
 
-    public Records(String nazwa, Integer Czas, String po, String przed) {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Records(String nazwa, Integer czas, String po, String przed, Integer id) {
         Nazwa = nazwa;
-        this.Czas = Czas;
+        Czas = czas;
         Po = po;
         Przed = przed;
+        this.id = id;
     }
 }
