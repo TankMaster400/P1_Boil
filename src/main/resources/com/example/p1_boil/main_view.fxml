@@ -7,13 +7,16 @@
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.p1_boil.Controller">
    <children>
-      <TableView editable="true" prefHeight="400.0" prefWidth="707.0">
+      <TableView fx:id="Table1" editable="true" prefHeight="400.0" prefWidth="707.0">
         <columns>
-          <TableColumn prefWidth="103.0" text="Nazwa czynności" />
-          <TableColumn prefWidth="150.0" text="Czas trwania czynności" />
-            <TableColumn prefWidth="78.0" text="OD" />
-            <TableColumn prefWidth="91.0" text="DO" />
+          <TableColumn fx:id="Nazwa_t" prefWidth="103.0" text="Nazwa czynności" />
+          <TableColumn fx:id="CZAS_t" prefWidth="145.0" text="Czas trwania czynności" />
+            <TableColumn fx:id="OD_t" prefWidth="66.0" text="OD" />
+            <TableColumn fx:id="DO_t" prefWidth="70.0" text="DO" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="462.0" spacing="40.0">
          <children>

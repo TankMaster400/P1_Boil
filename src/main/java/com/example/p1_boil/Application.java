@@ -14,7 +14,7 @@ public class Application extends javafx.application.Application {
         stage.setTitle("Main_view");
 
         Data data = new Data();
-        data.licz();
+        //data.licz();
 
         stage.setScene(scene);
         stage.show();
