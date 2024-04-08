@@ -269,29 +269,32 @@ public class Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-//        DBConnect connection = new DBConnect();
-//        Connection connectDB = connection.getDB();
-//
-//        String sqlS = "SELECT * FROM Records";
-//
-//        ObservableList<Records> list = FXCollections.observableArrayList();
-//
-//        try
-//        {
-//            Statement statement = connectDB.createStatement();
-//            ResultSet resultSet = statement.executeQuery(sqlS);
-//
-//            while (resultSet.next())
-//            {
-//                list.add(new Records(resultSet.getString("Nazwa"),Integer.parseInt(resultSet.getString("Czas")),resultSet.getString("Po"),resultSet.getString("Przed"),Integer.parseInt(resultSet.getString("id"))));
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println(e);
-//        }
+        DBConnect connection = new DBConnect();
+        Connection connectDB = connection.getDB();
+
+        String sqlS = "SELECT * FROM Records";
+
+        //ObservableList<Records> list = FXCollections.observableArrayList();
+
         Data data = new Data();
+        try
+        {
+            Statement statement = connectDB.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlS);
+
+            while (resultSet.next())
+            {
+                data.addRecord(resultSet.getString("Nazwa"),Integer.parseInt(resultSet.getString("Czas")),resultSet.getString("Po"),resultSet.getString("Przed"));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
         data.licz();
+
+
+
         //TODO: rewrite, one controller two fxml's - possibly wrong
         Pane basePane = (Pane)fxmlLoader.getNamespace().get("genPane");
         //Iterate over nodes

@@ -10,16 +10,16 @@ public class Data {
     ArrayList<Czyn> czyns = new ArrayList<Czyn>() ;
 
     void licz(){
-        addRecord("A", 3, "1", "2");
-        addRecord("B", 4, "2", "3");
-        addRecord("C", 6, "2", "4");
-        addRecord("D", 7, "3", "5");
-        addRecord("E", 1, "5", "7");
-        addRecord("F", 2, "4", "7");
-        addRecord("G", 3, "4", "6");
-        addRecord("H", 4, "6", "7");
-        addRecord("I", 1, "7", "8");
-        addRecord("J", 2, "8", "9");
+//        addRecord("A", 3, "1", "2");
+//        addRecord("B", 4, "2", "3");
+//        addRecord("C", 6, "2", "4");
+//        addRecord("D", 7, "3", "5");
+//        addRecord("E", 1, "5", "7");
+//        addRecord("F", 2, "4", "7");
+//        addRecord("G", 3, "4", "6");
+//        addRecord("H", 4, "6", "7");
+//        addRecord("I", 1, "7", "8");
+//        addRecord("J", 2, "8", "9");
 
         //SZUKANIE PUNKTU STARTOWEGO I KOŃCOWEGO
         int start = -1;
