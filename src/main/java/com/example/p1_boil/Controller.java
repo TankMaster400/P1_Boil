@@ -114,7 +114,7 @@ public class Controller implements Initializable {
                                     }
             );
 
-            OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
+            OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
             OD_t.setCellFactory(TextFieldTableCell.forTableColumn());
             OD_t.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Records, String>>() {
                                         @Override
@@ -134,7 +134,7 @@ public class Controller implements Initializable {
                                     }
             );
 
-            DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+            DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
             DO_t.setCellFactory(TextFieldTableCell.forTableColumn());
             DO_t.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Records, String>>() {
                                         @Override
@@ -198,8 +198,8 @@ public class Controller implements Initializable {
 
                 Nazwa_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Nazwa"));
                 CZAS_t.setCellValueFactory(new PropertyValueFactory<Records, Integer>("Czas"));
-                OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
-                DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+                OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+                DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -239,8 +239,8 @@ public class Controller implements Initializable {
 
             Nazwa_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Nazwa"));
             CZAS_t.setCellValueFactory(new PropertyValueFactory<Records, Integer>("Czas"));
-            OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
-            DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+            OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+            DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
 
         }
         catch (Exception e)
@@ -279,8 +279,8 @@ public class Controller implements Initializable {
 
                 Nazwa_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Nazwa"));
                 CZAS_t.setCellValueFactory(new PropertyValueFactory<Records, Integer>("Czas"));
-                OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
-                DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+                OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+                DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
 
         }
         catch (Exception e)
