@@ -62,7 +62,7 @@ public class Data {
 
         //wyświetlanie wyników w terminalu
         for(int i=0; i<nodes.size();i++){
-            System.out.println(nodes.get(i).name+" "+nodes.get(i).time_pk+" "+nodes.get(i).time_kp+" "+nodes.get(i).time_l);
+            System.out.println("Node "+nodes.get(i).name+" | PK: "+nodes.get(i).time_pk+" | KP: "+nodes.get(i).time_kp+" | L: "+nodes.get(i).time_l);
         }
     }
     void time_pk(Node oper){

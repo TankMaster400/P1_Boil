@@ -15,6 +15,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.CubicCurve;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Path;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -24,6 +33,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -253,7 +263,7 @@ public class Controller implements Initializable {
     private void Generuj(ActionEvent event) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("Generuj_view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 560, 440);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 600, Color.LIGHTGREEN);
         Stage stage = new Stage();
         stage.setTitle("Graf");
         stage.setScene(scene);
@@ -282,6 +292,98 @@ public class Controller implements Initializable {
 //        }
         Data data = new Data();
         data.licz();
+        //TODO: rewrite, one controller two fxml's - possibly wrong
+        Pane basePane = (Pane)fxmlLoader.getNamespace().get("genPane");
+        //Iterate over nodes
+        //TODO: rewrite, add classes for circles, do something with var i
+        Integer i = 1;
+        ArrayList<Integer> tmp = new ArrayList<Integer>();
+        for(Node dataNode : data.nodes) {
+            Text text = new Text();
+            Circle circle = new Circle();
+            circle.setStroke(Color.BLACK);
+
+            if(dataNode.next.isEmpty()){
+                circle.setFill(Color.RED);
+            }else if(dataNode.prev.isEmpty()){
+                circle.setFill(Color.GREEN);
+            }else{
+                circle.setFill(null);
+            }
+
+            circle.setRadius(10);
+            circle.setCenterX(5+30*i);
+            circle.setCenterY(5+30*i);
+
+            text.setFont(new Font(20));
+            text.setWrappingWidth(200);
+            text.setTextAlignment(TextAlignment.JUSTIFY);
+            text.setText(dataNode.name);
+            tmp.add(Integer.parseInt(dataNode.name));
+            text.setX(30*i);
+            text.setY(13+30*i);
+
+
+            basePane.getChildren().add(circle);
+            basePane.getChildren().add(text);
+            i++;
+        }
+        //Iterate over links
+        //TODO: rename 'czyns' to 'links' or literally anything else
+        //TODO: rewrite, add classes for lines
+        Boolean switchOn = true;
+        for(Czyn dataLink : data.czyns){
+            CubicCurve cubicCurve = new CubicCurve();
+            Line arrowPartA = new Line();
+            Line arrowPartB = new Line();
+
+            Integer prevNumberPosition = tmp.indexOf(Integer.parseInt(dataLink.prev.name))+1;
+            Integer nextNumberPosition = tmp.indexOf(Integer.parseInt(dataLink.next.name))+1;
+
+            cubicCurve.setStartX(12+30*prevNumberPosition);
+            cubicCurve.setStartY(12+30*prevNumberPosition);
+
+            if(switchOn){
+                cubicCurve.setControlX1(5+30*prevNumberPosition);
+                cubicCurve.setControlY1(40+30*prevNumberPosition);
+                cubicCurve.setControlX2(-40+30*nextNumberPosition);
+                cubicCurve.setControlY2(-5+30*nextNumberPosition);
+                switchOn = false;
+            }else{
+                cubicCurve.setControlX1(40+30*prevNumberPosition);
+                cubicCurve.setControlY1(5+30*prevNumberPosition);
+                cubicCurve.setControlX2(-5+30*nextNumberPosition);
+                cubicCurve.setControlY2(-40+30*nextNumberPosition);
+                switchOn = true;
+            }
+
+            cubicCurve.setEndX(-5+30*nextNumberPosition);
+            cubicCurve.setEndY(5+30*nextNumberPosition);
+
+            arrowPartA.setStartX(-10+30*nextNumberPosition);
+            arrowPartA.setStartY(10+30*nextNumberPosition);
+            arrowPartB.setStartX(-10+30*nextNumberPosition);
+            arrowPartB.setStartY(0+30*nextNumberPosition);
+
+            arrowPartA.setEndX(-5+30*nextNumberPosition);
+            arrowPartA.setEndY(5+30*nextNumberPosition);
+            arrowPartB.setEndX(-5+30*nextNumberPosition);
+            arrowPartB.setEndY(5+30*nextNumberPosition);
+
+            cubicCurve.setStroke(Color.FORESTGREEN);
+            cubicCurve.setStrokeWidth(1);
+
+            arrowPartA.setStroke(Color.FORESTGREEN);
+            arrowPartA.setStrokeWidth(1);
+
+            arrowPartB.setStroke(Color.FORESTGREEN);
+            arrowPartB.setStrokeWidth(1);
+
+            cubicCurve.setFill(null);
+            basePane.getChildren().add(cubicCurve);
+            basePane.getChildren().add(arrowPartA);
+            basePane.getChildren().add(arrowPartB);
+        }
 
     }
 
