@@ -24,3 +24,12 @@
 1. Obsługa wielu punktów startowych (na razie komunikat w termianlu)
 1. Obsługa wielu punktów końcowych (na razie komunikat w termianlu)
 2. Zdarzenie w którym dwie czynności mają ten sam węzeł początkowy i końcowy (? trzeba przemyśleć).
+
+## Dla Franka do ogarnięcia:
+1. Graf żeby nie tworzyły się zduplikowane punkty 
+2. Zniwelowanie błędó wyskakujących w konsoli (Nie może być więcej niż jeden punkt startowy!|Nie może być więcej niż jeden punkt końcowy!)
+3. Nazwy nad strzałkami
+4. Dane punktów - musi się dla każdego punktu w jakiś sposób wyświetlać jeszcze:
+   1. time_pk - czas liczony od początku do końca
+   2. time_kp - czas liczony od końca do początku
+   3. time_l - czas l
