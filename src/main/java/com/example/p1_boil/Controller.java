@@ -144,12 +144,12 @@ public class Controller implements Initializable {
                                     }
             );
 
-
         }
         catch (Exception e)
         {
             System.out.println(e);
         }
+
 
     }
 
@@ -162,6 +162,37 @@ public class Controller implements Initializable {
         stage.setTitle("Formularz Dodawania");
         stage.setScene(scene);
         stage.show();
+
+        ControllerD dialog = fxmlLoader.getController();
+        dialog.setController(this);
+
+    }
+    public void odnowienietabeli()
+    {
+
+            DBConnect connection = new DBConnect();
+            Connection connectDB = connection.getDB();
+            try {
+                String sqlS2 = "SELECT * FROM Records";
+
+                ObservableList<Records> list = FXCollections.observableArrayList();
+
+                Statement statement2 = connectDB.createStatement();
+                ResultSet resultSet = statement2.executeQuery(sqlS2);
+
+                while (resultSet.next()) {
+                    list.add(new Records(resultSet.getString("Nazwa"), Integer.parseInt(resultSet.getString("Czas")), resultSet.getString("Po"), resultSet.getString("Przed"), Integer.parseInt(resultSet.getString("id"))));
+                }
+                Table1.setEditable(true);
+                Table1.setItems(list);
+
+                Nazwa_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Nazwa"));
+                CZAS_t.setCellValueFactory(new PropertyValueFactory<Records, Integer>("Czas"));
+                OD_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Przed"));
+                DO_t.setCellValueFactory(new PropertyValueFactory<Records, String>("Po"));
+            } catch (Exception e) {
+                System.out.println(e);
+            }
 
     }
 
@@ -281,7 +312,7 @@ public class Controller implements Initializable {
             System.out.println(e);
         }
         Data data = new Data();
-        //data.licz();
+        data.licz();
 
     }
 
