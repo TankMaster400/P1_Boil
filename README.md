@@ -27,7 +27,7 @@
 
 ## Dla Franka do ogarnięcia:
 1. Graf żeby nie tworzyły się zduplikowane punkty 
-2. Zniwelowanie błędó wyskakujących w konsoli (Nie może być więcej niż jeden punkt startowy!|Nie może być więcej niż jeden punkt końcowy!)
+2. Zniwelowanie błędów wyskakujących w konsoli (Nie może być więcej niż jeden punkt startowy!|Nie może być więcej niż jeden punkt końcowy!)
 3. Nazwy nad strzałkami
 4. Dane punktów - musi się dla każdego punktu w jakiś sposób wyświetlać jeszcze:
    1. time_pk - czas liczony od początku do końca

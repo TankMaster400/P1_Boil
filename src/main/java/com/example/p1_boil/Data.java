@@ -3,6 +3,7 @@ package com.example.p1_boil;
 import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class Data {
 
@@ -104,13 +105,14 @@ public class Data {
         //szukanie OD
         boolean find = false;
         Integer i=0;
-        while(find!=true||i<nodes.size()){
+        while(find!=true&&i<=nodes.size()){
             if(i==nodes.size()){
                 nodes.add(new Node(OD));
                 od_int = i;
                 find = true;
             }else{
-                if(nodes.get(i).name == OD){
+                //System.out.println((nodes.get(i).name+" "+OD+" "+(Objects.equals(nodes.get(i).name, OD))));
+                if(Objects.equals(nodes.get(i).name, OD)){
                     od_int = i;
                     find = true;
                 }
@@ -121,13 +123,13 @@ public class Data {
         //szukanie DO
         find = false;
         i=0;
-        while(find!=true||i<nodes.size()){
+        while(find!=true&&i<=nodes.size()){
             if(i==nodes.size()){
                 nodes.add(new Node(DO));
                 do_int = i;
                 find = true;
             }else{
-                if(nodes.get(i).name == DO){
+                if(Objects.equals(nodes.get(i).name, DO)){
                     do_int = i;
                     find = true;
                 }

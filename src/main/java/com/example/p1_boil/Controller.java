@@ -322,7 +322,7 @@ public class Controller implements Initializable {
         {
             System.out.println(e);
         }
-        data.licz();
+        //data.licz();
 
 
 
