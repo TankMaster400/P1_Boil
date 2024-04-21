@@ -65,6 +65,8 @@ public class Data {
         for(int i=0; i<nodes.size();i++){
             System.out.println("Node "+nodes.get(i).name+" | PK: "+nodes.get(i).time_pk+" | KP: "+nodes.get(i).time_kp+" | L: "+nodes.get(i).time_l);
         }
+
+        findSK(nodes.get(end));
     }
     void time_pk(Node oper){
         for(int i=0;i<oper.next.size();i++){
@@ -144,5 +146,17 @@ public class Data {
         nodes.get(do_int).prev.add(czyns.get(czyns.size()-1));
         czyns.get(czyns.size()-1).next = nodes.get(do_int);
         czyns.get(czyns.size()-1).prev = nodes.get(od_int);
+    }
+
+    void findSK(Node looking){
+        //System.out.println(looking.name);
+        int i = 0;
+        while(looking.prev.get(i).prev.time_pk != looking.time_pk - looking.prev.get(i).time){
+            i++;
+        }
+        looking.prev.get(i).prev.sk = looking;
+        if(looking.prev.get(i).prev.prev.size() >0){
+            findSK(looking.prev.get(i).prev);
+        }
     }
 }

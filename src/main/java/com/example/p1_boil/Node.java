@@ -8,6 +8,7 @@ public class Node {
     Integer time_kp = 0;
     Integer time_l =0;
     Integer pom_int = 0;
+    Node sk = null;
     ArrayList<Czyn> next= new ArrayList<Czyn>();
     ArrayList<Czyn> prev = new ArrayList<Czyn>();
 
