@@ -2,6 +2,7 @@ package com.example.p1_boil;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,6 +19,8 @@ public class ControllerD {
     }
 
     @FXML
+    private Label tekst_b;
+    @FXML
     private TextField Nazwa;
     @FXML
     private TextField Czas;
@@ -31,21 +34,25 @@ public class ControllerD {
     {
         DBConnect connection = new DBConnect();
         Connection connectDB = connection.getDB();
-        try {
-            String sqlD = "INSERT INTO Records (Nazwa, Czas, Po , Przed) VALUES ('"+Nazwa.getText()+"','"+Integer.parseInt(Czas.getText())+"','"+ Po.getText()+"',"+ Przed.getText()+")";
+        if(Integer.parseInt(Czas.getText()) >= 0 && (Integer.parseInt(Po.getText()) > 0 && Integer.parseInt(Przed.getText()) > 0 )) {
+            try {
+                String sqlD = "INSERT INTO Records (Nazwa, Czas, Po , Przed) VALUES ('" + Nazwa.getText() + "','" + Integer.parseInt(Czas.getText()) + "','" + Po.getText() + "'," + Przed.getText() + ")";
 
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(sqlD);
-            controller.odnowienietabeli();
-            Nazwa.clear();
-            Czas.clear();
-            Po.clear();
-            Przed.clear();
-
-        } catch(Exception e)
-        {
-            System.out.println(e);
+                Statement statement = connectDB.createStatement();
+                statement.executeUpdate(sqlD);
+                controller.odnowienietabeli();
+                Nazwa.clear();
+                Czas.clear();
+                Po.clear();
+                Przed.clear();
+                tekst_b.setText("Dodano");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
-
+        else
+        {
+            tekst_b.setText("Błedne dane\nCzas oraz Zdarzenia nie mogą być ujemne");
+        }
     }
 }

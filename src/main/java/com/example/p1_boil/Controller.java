@@ -294,7 +294,7 @@ public class Controller implements Initializable {
     private void Generuj(ActionEvent event) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("Generuj_view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600, Color.LIGHTGREEN);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 640, Color.LIGHTGREEN);
         Stage stage = new Stage();
         stage.setTitle("Graf");
         stage.setScene(scene);
