@@ -395,7 +395,12 @@ public class Controller implements Initializable {
             textE.setTextAlignment(TextAlignment.JUSTIFY);
             String finalString = "";
             for(Czyn nextCzyn : dataNode.next){
-                finalString += "To: " + nextCzyn.next.name + " - Time: " + nextCzyn.time + " | ";
+                if(nextCzyn.next == dataNode.sk){
+                    finalString += "KRYT CZYN: "+nextCzyn.name+ " - To: " + nextCzyn.next.name + " - Time: " + nextCzyn.time + " | ";
+                }else{
+                    finalString += "Czyn: "+nextCzyn.name+ " - To: " + nextCzyn.next.name + " - Time: " + nextCzyn.time + " | ";
+                }
+
             }
             textE.setText(finalString);
             textE.setX(sizeVariable*i+sizeVariable/2.5); //node number location
