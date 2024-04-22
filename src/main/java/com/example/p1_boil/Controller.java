@@ -396,9 +396,9 @@ public class Controller implements Initializable {
             String finalString = "";
             for(Czyn nextCzyn : dataNode.next){
                 if(nextCzyn.next == dataNode.sk){
-                    finalString += "KRYT CZYN: "+nextCzyn.name+ " - To: " + nextCzyn.next.name + " - Time: " + nextCzyn.time + " | ";
+                    finalString += "KRYT CZYN: "+nextCzyn.name+ " - to: " + nextCzyn.next.name + " - time: " + nextCzyn.time + " | ";
                 }else{
-                    finalString += "Czyn: "+nextCzyn.name+ " - To: " + nextCzyn.next.name + " - Time: " + nextCzyn.time + " | ";
+                    finalString += "czyn: "+nextCzyn.name+ " - to: " + nextCzyn.next.name + " - time: " + nextCzyn.time + " | ";
                 }
 
             }
