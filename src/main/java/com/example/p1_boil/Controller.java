@@ -325,12 +325,11 @@ public class Controller implements Initializable {
 
 
 
-        //TODO: rewrite, one controller two fxml's - possibly wrong
+
         ScrollPane baseScrollPane = (ScrollPane)fxmlLoader.getNamespace().get("genPane");
         Pane basePane = new Pane();
         Integer sizeVariable = 90;
         //Iterate over nodes
-        //TODO: rewrite, add classes for circles, do something with var i
         System.out.println("Generowanie grafiki: START");
         Integer i = 1;
         ArrayList<Integer> tmp = new ArrayList<Integer>();
