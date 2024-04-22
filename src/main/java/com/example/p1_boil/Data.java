@@ -10,6 +10,8 @@ public class Data {
     ArrayList<Node> nodes = new ArrayList<Node>() ;
     ArrayList<Czyn> czyns = new ArrayList<Czyn>() ;
 
+    boolean flaga_p = false;
+    boolean flaga_k = false;
     void licz(){
 //        addRecord("A", 3, "1", "2");
 //        addRecord("B", 4, "2", "3");
@@ -30,6 +32,7 @@ public class Data {
             if(nodes.get(i).prev.size()==0){
                 if(start!=-1){
                     System.out.println("Nie może być więcej niż jeden punkt startowy!"); //Obsłużyć!!!
+                    flaga_p =true;
                 }else{
                     start = i;
                     System.out.println("START: " + i);
@@ -39,6 +42,7 @@ public class Data {
             if(nodes.get(i).next.size()==0){
                 if(end!=-1){
                     System.out.println("Nie może być więcej niż jeden punkt końcowy!"); //Obsłużyć!!!
+                    flaga_k =true;
                 }else{
                     end = i;
                     System.out.println("KONIEC: "+i);

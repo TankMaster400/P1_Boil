@@ -35,6 +35,7 @@ public class ControllerD {
         DBConnect connection = new DBConnect();
         Connection connectDB = connection.getDB();
         if(Integer.parseInt(Czas.getText()) >= 0 && (Integer.parseInt(Po.getText()) > 0 && Integer.parseInt(Przed.getText()) > 0 )) {
+            if(Integer.parseInt(Po.getText()) != Integer.parseInt(Przed.getText()) ) {
             try {
                 String sqlD = "INSERT INTO Records (Nazwa, Czas, Po , Przed) VALUES ('" + Nazwa.getText() + "','" + Integer.parseInt(Czas.getText()) + "','" + Po.getText() + "'," + Przed.getText() + ")";
 
@@ -48,6 +49,11 @@ public class ControllerD {
                 tekst_b.setText("Dodano");
             } catch (Exception e) {
                 System.out.println(e);
+            }
+            }
+            else
+            {
+                tekst_b.setText("Błedne dane\n Zdarzenie przed i po nie może być takie same");
             }
         }
         else

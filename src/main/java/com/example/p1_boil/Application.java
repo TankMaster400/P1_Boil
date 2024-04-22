@@ -13,8 +13,6 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 1280, 640);
         stage.setTitle("Main_view");
 
-        //Data data = new Data();
-        //data.licz();
 
         stage.setScene(scene);
         stage.show();

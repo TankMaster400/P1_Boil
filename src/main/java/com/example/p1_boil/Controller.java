@@ -38,7 +38,8 @@ import static java.lang.Math.sqrt;
 public class Controller implements Initializable {
 
     // main_view
-
+    @FXML
+    private Label tekst_blad_g;
     @FXML
     private TableView<Records> Table1;
     @FXML
@@ -322,174 +323,190 @@ public class Controller implements Initializable {
             System.out.println(e);
         }
         data.licz();
+        Label L_text = (Label) fxmlLoader.getNamespace().get("tekst_blad_g");
 
+        if(data.flaga_k == false && data.flaga_p == false)
+        {
+            L_text.setText("");
+            ScrollPane baseScrollPane = (ScrollPane) fxmlLoader.getNamespace().get("genPane");
+            Pane basePane = new Pane();
+            Integer sizeVariable = 90;
+            //Iterate over nodes
+            System.out.println("Generowanie grafiki: START");
+            Integer i = 1;
+            ArrayList<Integer> tmp = new ArrayList<Integer>();
+            System.out.println("Generowanie: ilość node " + data.nodes.size());
+            for (Node dataNode : data.nodes) {
+                System.out.println("Generowanie: NODE " + dataNode.name);
+                Circle circle = new Circle();
+                circle.setStroke(Color.BLACK);
 
-
-
-        ScrollPane baseScrollPane = (ScrollPane)fxmlLoader.getNamespace().get("genPane");
-        Pane basePane = new Pane();
-        Integer sizeVariable = 90;
-        //Iterate over nodes
-        System.out.println("Generowanie grafiki: START");
-        Integer i = 1;
-        ArrayList<Integer> tmp = new ArrayList<Integer>();
-        System.out.println("Generowanie: ilość node "+data.nodes.size());
-        for(Node dataNode : data.nodes) {
-            System.out.println("Generowanie: NODE "+dataNode.name);
-            Circle circle = new Circle();
-            circle.setStroke(Color.BLACK);
-
-            System.out.println("dataNode.sk: "+ dataNode.sk);
-            System.out.println("");
-            if(dataNode.next.isEmpty()){
-                circle.setFill(Color.RED);
-            }else if(dataNode.prev.isEmpty()){
-                circle.setFill(Color.GREEN);
-            }else if(dataNode.sk != null){
-                circle.setFill(Color.LIGHTBLUE);
-            }else{
-                circle.setFill(null);
-            }
-
-            circle.setRadius(sizeVariable/3);
-            circle.setCenterX(sizeVariable*i);
-            circle.setCenterY(sizeVariable*i);
-
-            Text text = new Text();
-            text.setFont(new Font(20));
-            text.setWrappingWidth(200);
-            text.setTextAlignment(TextAlignment.JUSTIFY);
-            text.setText(dataNode.name);
-            tmp.add(Integer.parseInt(dataNode.name));
-            text.setX(sizeVariable*i-5); //node number location
-            text.setY(-(sizeVariable/6)+4+sizeVariable*i); //offset to center
-
-            Text textB = new Text();
-            textB.setFont(new Font(15));
-            textB.setWrappingWidth(200);
-            textB.setTextAlignment(TextAlignment.JUSTIFY);
-            textB.setText(String.valueOf(dataNode.time_pk));
-            textB.setX(sizeVariable*i-sizeVariable/3.5); //node number location
-            textB.setY(sizeVariable*i+5); //offset to center
-
-            Text textC = new Text();
-            textC.setFont(new Font(15));
-            textC.setWrappingWidth(200);
-            textC.setTextAlignment(TextAlignment.JUSTIFY);
-            textC.setText(String.valueOf(dataNode.time_kp));
-            textC.setX(sizeVariable*i+sizeVariable/8); //node number location
-            textC.setY(sizeVariable*i+5); //offset to center
-
-            Text textD = new Text();
-            textD.setFont(new Font(15));
-            textD.setWrappingWidth(200);
-            textD.setTextAlignment(TextAlignment.JUSTIFY);
-            textD.setText(String.valueOf(dataNode.time_l));
-            textD.setX(sizeVariable*i-sizeVariable/18); //node number location
-            textD.setY(+(sizeVariable/6)+4+sizeVariable*i); //offset to center
-
-            Text textE = new Text();
-            textE.setFont(new Font(15));
-            textE.setWrappingWidth(2000);
-            textE.setTextAlignment(TextAlignment.JUSTIFY);
-            String finalString = "";
-            for(Czyn nextCzyn : dataNode.next){
-                if(nextCzyn.next == dataNode.sk){
-                    finalString += "KRYT CZYN: "+nextCzyn.name+ " - to: " + nextCzyn.next.name + " - time: " + nextCzyn.time + " | ";
-                }else{
-                    finalString += "czyn: "+nextCzyn.name+ " - to: " + nextCzyn.next.name + " - time: " + nextCzyn.time + " | ";
+                System.out.println("dataNode.sk: " + dataNode.sk);
+                System.out.println("");
+                if (dataNode.next.isEmpty()) {
+                    circle.setFill(Color.RED);
+                } else if (dataNode.prev.isEmpty()) {
+                    circle.setFill(Color.GREEN);
+                } else if (dataNode.sk != null) {
+                    circle.setFill(Color.LIGHTBLUE);
+                } else {
+                    circle.setFill(null);
                 }
 
+                circle.setRadius(sizeVariable / 3);
+                circle.setCenterX(sizeVariable * i);
+                circle.setCenterY(sizeVariable * i);
+
+                Text text = new Text();
+                text.setFont(new Font(20));
+                text.setWrappingWidth(200);
+                text.setTextAlignment(TextAlignment.JUSTIFY);
+                text.setText(dataNode.name);
+                tmp.add(Integer.parseInt(dataNode.name));
+                text.setX(sizeVariable * i - 5); //node number location
+                text.setY(-(sizeVariable / 6) + 4 + sizeVariable * i); //offset to center
+
+                Text textB = new Text();
+                textB.setFont(new Font(15));
+                textB.setWrappingWidth(200);
+                textB.setTextAlignment(TextAlignment.JUSTIFY);
+                textB.setText(String.valueOf(dataNode.time_pk));
+                textB.setX(sizeVariable * i - sizeVariable / 3.5); //node number location
+                textB.setY(sizeVariable * i + 5); //offset to center
+
+                Text textC = new Text();
+                textC.setFont(new Font(15));
+                textC.setWrappingWidth(200);
+                textC.setTextAlignment(TextAlignment.JUSTIFY);
+                textC.setText(String.valueOf(dataNode.time_kp));
+                textC.setX(sizeVariable * i + sizeVariable / 8); //node number location
+                textC.setY(sizeVariable * i + 5); //offset to center
+
+                Text textD = new Text();
+                textD.setFont(new Font(15));
+                textD.setWrappingWidth(200);
+                textD.setTextAlignment(TextAlignment.JUSTIFY);
+                textD.setText(String.valueOf(dataNode.time_l));
+                textD.setX(sizeVariable * i - sizeVariable / 18); //node number location
+                textD.setY(+(sizeVariable / 6) + 4 + sizeVariable * i); //offset to center
+
+                Text textE = new Text();
+                textE.setFont(new Font(15));
+                textE.setWrappingWidth(2000);
+                textE.setTextAlignment(TextAlignment.JUSTIFY);
+                String finalString = "";
+                for (Czyn nextCzyn : dataNode.next) {
+                    if (nextCzyn.next == dataNode.sk) {
+                        finalString += "KRYT CZYN: " + nextCzyn.name + " - to: " + nextCzyn.next.name + " - time: " + nextCzyn.time + " | ";
+                    } else {
+                        finalString += "czyn: " + nextCzyn.name + " - to: " + nextCzyn.next.name + " - time: " + nextCzyn.time + " | ";
+                    }
+
+                }
+                textE.setText(finalString);
+                textE.setX(sizeVariable * i + sizeVariable / 2.5); //node number location
+                textE.setY(sizeVariable * i + 5); //offset to center
+
+                Line crossA = new Line();
+                Line crossB = new Line();
+
+                crossA.setStartX((sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i);
+                crossA.setStartY((sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i);
+                crossA.setEndX((-(sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i));
+                crossA.setEndY((-(sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i));
+
+                crossB.setStartX(-(sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i);
+                crossB.setStartY((sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i);
+                crossB.setEndX(((sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i));
+                crossB.setEndY((-(sqrt(2) / 2) * (sizeVariable / 3) + sizeVariable * i));
+
+                basePane.getChildren().add(circle);
+                basePane.getChildren().add(text);
+                basePane.getChildren().add(textB);
+                basePane.getChildren().add(textC);
+                basePane.getChildren().add(textD);
+                basePane.getChildren().add(textE);
+                basePane.getChildren().add(crossA);
+                basePane.getChildren().add(crossB);
+                i++;
             }
-            textE.setText(finalString);
-            textE.setX(sizeVariable*i+sizeVariable/2.5); //node number location
-            textE.setY(sizeVariable*i+5); //offset to center
+            //Iterate over links
+            //TODO: rename 'czyns' to 'links' or literally anything else
+            //TODO: rewrite, add classes for lines
+            Boolean switchOn = true;
+            for (Czyn dataLink : data.czyns) {
+                CubicCurve cubicCurve = new CubicCurve();
+                Line arrowPartA = new Line();
+                Line arrowPartB = new Line();
 
-            Line crossA = new Line();
-            Line crossB = new Line();
+                Integer prevNumberPosition = tmp.indexOf(Integer.parseInt(dataLink.prev.name)) + 1;
+                Integer nextNumberPosition = tmp.indexOf(Integer.parseInt(dataLink.next.name)) + 1;
 
-            crossA.setStartX((sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i);
-            crossA.setStartY((sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i);
-            crossA.setEndX((-(sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i));
-            crossA.setEndY((-(sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i));
+                if (switchOn) {
+                    cubicCurve.setControlX1(sizeVariable / 8 + sizeVariable * prevNumberPosition);
+                    cubicCurve.setControlY1(sizeVariable + sizeVariable * prevNumberPosition);
+                    cubicCurve.setControlX2(-sizeVariable + sizeVariable * nextNumberPosition);
+                    cubicCurve.setControlY2(-sizeVariable / 8 + sizeVariable * nextNumberPosition);
+                    switchOn = false;
+                } else {
+                    cubicCurve.setControlX1(sizeVariable + sizeVariable * prevNumberPosition);
+                    cubicCurve.setControlY1(sizeVariable / 8 + sizeVariable * prevNumberPosition);
+                    cubicCurve.setControlX2(-sizeVariable / 8 + sizeVariable * nextNumberPosition);
+                    cubicCurve.setControlY2(-sizeVariable + sizeVariable * nextNumberPosition);
+                    switchOn = true;
+                }
 
-            crossB.setStartX(-(sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i);
-            crossB.setStartY((sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i);
-            crossB.setEndX(((sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i));
-            crossB.setEndY((-(sqrt(2)/2)*(sizeVariable/3)+sizeVariable*i));
+                cubicCurve.setStartX(sizeVariable / 3 + sizeVariable * prevNumberPosition);
+                cubicCurve.setStartY(sizeVariable * prevNumberPosition);
 
-            basePane.getChildren().add(circle);
-            basePane.getChildren().add(text);
-            basePane.getChildren().add(textB);
-            basePane.getChildren().add(textC);
-            basePane.getChildren().add(textD);
-            basePane.getChildren().add(textE);
-            basePane.getChildren().add(crossA);
-            basePane.getChildren().add(crossB);
-            i++;
+                cubicCurve.setEndX(-sizeVariable / 3 + sizeVariable * nextNumberPosition);
+                cubicCurve.setEndY(sizeVariable * nextNumberPosition);
+
+                cubicCurve.setStroke(Color.FORESTGREEN);
+                cubicCurve.setStrokeWidth(1);
+
+                if ((dataLink.next == dataLink.prev.sk) || dataLink.next.next == null) {
+                    cubicCurve.setStroke(Color.BLUEVIOLET);
+                }
+
+                Integer arrowOffset = -sizeVariable / 6;
+                arrowPartA.setStartX(arrowOffset + (-sizeVariable / 3) + sizeVariable * nextNumberPosition);
+                arrowPartA.setStartY(-arrowOffset + sizeVariable * nextNumberPosition);
+                arrowPartB.setStartX(arrowOffset + (-sizeVariable / 3) + sizeVariable * nextNumberPosition);
+                arrowPartB.setStartY(arrowOffset + sizeVariable * nextNumberPosition);
+
+                arrowPartA.setEndX(-sizeVariable / 3 + sizeVariable * nextNumberPosition);
+                arrowPartA.setEndY(sizeVariable * nextNumberPosition);
+                arrowPartB.setEndX(-sizeVariable / 3 + sizeVariable * nextNumberPosition);
+                arrowPartB.setEndY(sizeVariable * nextNumberPosition);
+
+                arrowPartA.setStroke(Color.BLACK);
+                arrowPartA.setStrokeWidth(1);
+
+                arrowPartB.setStroke(Color.BLACK);
+                arrowPartB.setStrokeWidth(1);
+
+                cubicCurve.setFill(null);
+                basePane.getChildren().add(cubicCurve);
+                basePane.getChildren().add(arrowPartA);
+                basePane.getChildren().add(arrowPartB);
+            }
+            baseScrollPane.setContent(basePane);
         }
-        //Iterate over links
-        //TODO: rename 'czyns' to 'links' or literally anything else
-        //TODO: rewrite, add classes for lines
-        Boolean switchOn = true;
-        for(Czyn dataLink : data.czyns){
-            CubicCurve cubicCurve = new CubicCurve();
-            Line arrowPartA = new Line();
-            Line arrowPartB = new Line();
-
-            Integer prevNumberPosition = tmp.indexOf(Integer.parseInt(dataLink.prev.name))+1;
-            Integer nextNumberPosition = tmp.indexOf(Integer.parseInt(dataLink.next.name))+1;
-
-            if(switchOn){
-                cubicCurve.setControlX1(sizeVariable/8+sizeVariable*prevNumberPosition);
-                cubicCurve.setControlY1(sizeVariable+sizeVariable*prevNumberPosition);
-                cubicCurve.setControlX2(-sizeVariable+sizeVariable*nextNumberPosition);
-                cubicCurve.setControlY2(-sizeVariable/8+sizeVariable*nextNumberPosition);
-                switchOn = false;
-            }else{
-                cubicCurve.setControlX1(sizeVariable+sizeVariable*prevNumberPosition);
-                cubicCurve.setControlY1(sizeVariable/8+sizeVariable*prevNumberPosition);
-                cubicCurve.setControlX2(-sizeVariable/8+sizeVariable*nextNumberPosition);
-                cubicCurve.setControlY2(-sizeVariable+sizeVariable*nextNumberPosition);
-                switchOn = true;
+        else
+        {
+            String tekst_cos = "";
+            if(data.flaga_p == true)
+            {
+                tekst_cos = tekst_cos+"Nie może być więcej niż jeden punkt startowy!";
             }
 
-            cubicCurve.setStartX(sizeVariable/3+sizeVariable*prevNumberPosition);
-            cubicCurve.setStartY(sizeVariable*prevNumberPosition);
-
-            cubicCurve.setEndX(-sizeVariable/3+sizeVariable*nextNumberPosition);
-            cubicCurve.setEndY(sizeVariable*nextNumberPosition);
-
-            cubicCurve.setStroke(Color.FORESTGREEN);
-            cubicCurve.setStrokeWidth(1);
-
-            if((dataLink.next == dataLink.prev.sk) || dataLink.next.next == null){
-                cubicCurve.setStroke(Color.BLUEVIOLET);
+            if(data.flaga_k == true)
+            {
+                tekst_cos = tekst_cos+"\nNie może być więcej niż jeden punkt koncowy!";
             }
-
-            Integer arrowOffset = -sizeVariable/6;
-            arrowPartA.setStartX(arrowOffset+(-sizeVariable/3)+sizeVariable*nextNumberPosition);
-            arrowPartA.setStartY(-arrowOffset+sizeVariable*nextNumberPosition);
-            arrowPartB.setStartX(arrowOffset+(-sizeVariable/3)+sizeVariable*nextNumberPosition);
-            arrowPartB.setStartY(arrowOffset+sizeVariable*nextNumberPosition);
-
-            arrowPartA.setEndX(-sizeVariable/3+sizeVariable*nextNumberPosition);
-            arrowPartA.setEndY(sizeVariable*nextNumberPosition);
-            arrowPartB.setEndX(-sizeVariable/3+sizeVariable*nextNumberPosition);
-            arrowPartB.setEndY(sizeVariable*nextNumberPosition);
-
-            arrowPartA.setStroke(Color.BLACK);
-            arrowPartA.setStrokeWidth(1);
-
-            arrowPartB.setStroke(Color.BLACK);
-            arrowPartB.setStrokeWidth(1);
-
-            cubicCurve.setFill(null);
-            basePane.getChildren().add(cubicCurve);
-            basePane.getChildren().add(arrowPartA);
-            basePane.getChildren().add(arrowPartB);
+            L_text.setText(tekst_cos);
         }
-        baseScrollPane.setContent(basePane);
     }
 
 

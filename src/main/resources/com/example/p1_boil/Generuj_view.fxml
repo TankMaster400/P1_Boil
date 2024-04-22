@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.ScrollPane?>
 <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1280.0" spacing="80.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.p1_boil.Controller">
    <children>
-      <ScrollPane fx:id="genPane" />
+      <ScrollPane fx:id="genPane">
+         <content>
+            <Label fx:id="tekst_blad_g" alignment="CENTER" contentDisplay="CENTER" prefHeight="645.0" prefWidth="798.0" textFill="RED">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+         </content></ScrollPane>
    </children>
 </HBox>
