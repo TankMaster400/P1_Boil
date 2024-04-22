@@ -461,6 +461,13 @@ public class Controller implements Initializable {
             cubicCurve.setEndX(-sizeVariable/3+sizeVariable*nextNumberPosition);
             cubicCurve.setEndY(sizeVariable*nextNumberPosition);
 
+            cubicCurve.setStroke(Color.FORESTGREEN);
+            cubicCurve.setStrokeWidth(1);
+
+            if((dataLink.next == dataLink.prev.sk) || dataLink.next.next == null){
+                cubicCurve.setStroke(Color.BLUEVIOLET);
+            }
+
             Integer arrowOffset = -sizeVariable/6;
             arrowPartA.setStartX(arrowOffset+(-sizeVariable/3)+sizeVariable*nextNumberPosition);
             arrowPartA.setStartY(-arrowOffset+sizeVariable*nextNumberPosition);
@@ -471,9 +478,6 @@ public class Controller implements Initializable {
             arrowPartA.setEndY(sizeVariable*nextNumberPosition);
             arrowPartB.setEndX(-sizeVariable/3+sizeVariable*nextNumberPosition);
             arrowPartB.setEndY(sizeVariable*nextNumberPosition);
-
-            cubicCurve.setStroke(Color.FORESTGREEN);
-            cubicCurve.setStrokeWidth(1);
 
             arrowPartA.setStroke(Color.BLACK);
             arrowPartA.setStrokeWidth(1);
