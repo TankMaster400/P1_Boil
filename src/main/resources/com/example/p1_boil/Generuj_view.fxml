@@ -2,8 +2,9 @@
 
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.ScrollPane?>
 <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1280.0" spacing="80.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.p1_boil.Controller">
    <children>
-      <Pane fx:id="genPane" prefHeight="400.0" prefWidth="600.0" />
+      <ScrollPane fx:id="genPane" />
    </children>
 </HBox>
